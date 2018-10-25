@@ -23,6 +23,10 @@
       <Name>Date.dim</Name>
       <FullPath>Date.dim</FullPath>
     </ProjectItem>
+    <ProjectItem>
+      <Name>Product.dim</Name>
+      <FullPath>Product.dim</FullPath>
+    </ProjectItem>
   </Dimensions>
   <DataSources>
     <ProjectItem>
