@@ -85,9 +85,26 @@ WHERE [dbo].[FactInternetSales].OrderDateKey BETWEEN '20080101' AND '20081231'</
 FROM [dbo].[FactInternetSales]
 WHERE  [dbo].[FactInternetSales].OrderDateKey &gt;= '20090101'</QueryDefinition>
           </Source>
-          <StorageMode>Molap</StorageMode>
+          <StorageMode>Rolap</StorageMode>
           <CurrentStorageMode>Molap</CurrentStorageMode>
           <ProcessingMode>Regular</ProcessingMode>
+          <ProactiveCaching dwd:design-time-name="088be756-82aa-4ba3-b396-a1bb948c3f4e">
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>PT0S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <Enabled>true</Enabled>
+            <AggregationStorage>MolapOnly</AggregationStorage>
+            <Source xsi:type="ProactiveCachingTablesBinding" dwd:design-time-name="e6e3765d-bb9a-4c2c-8472-f59b7536cd7d">
+              <NotificationTechnique>Server</NotificationTechnique>
+              <TableNotifications>
+                <TableNotification>
+                  <DbTableName>FactInternetSales</DbTableName>
+                  <DbSchemaName>dbo</DbSchemaName>
+                </TableNotification>
+              </TableNotifications>
+            </Source>
+          </ProactiveCaching>
         </Partition>
       </Partitions>
     </MeasureGroup>

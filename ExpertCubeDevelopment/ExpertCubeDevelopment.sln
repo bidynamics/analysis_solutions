@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "ExpertFirstCube", "ExpertFirstCube\ExpertFirstCube.dwproj", "{C6551390-E3B2-4690-BCAF-C79ED9BF7E0F}"
 EndProject
+Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "MDXTraining", "MDXTraining\MDXTraining.dwproj", "{7FE985E4-70D7-4D11-B245-01F083608E26}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Development|Default = Development|Default
@@ -13,6 +15,9 @@ Global
 		{C6551390-E3B2-4690-BCAF-C79ED9BF7E0F}.Development|Default.ActiveCfg = Development
 		{C6551390-E3B2-4690-BCAF-C79ED9BF7E0F}.Development|Default.Build.0 = Development
 		{C6551390-E3B2-4690-BCAF-C79ED9BF7E0F}.Development|Default.Deploy.0 = Development
+		{7FE985E4-70D7-4D11-B245-01F083608E26}.Development|Default.ActiveCfg = Development
+		{7FE985E4-70D7-4D11-B245-01F083608E26}.Development|Default.Build.0 = Development
+		{7FE985E4-70D7-4D11-B245-01F083608E26}.Development|Default.Deploy.0 = Development
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
