@@ -6,6 +6,18 @@
     <Name>MDXTraining.database</Name>
     <FullPath>MDXTraining.database</FullPath>
   </Database>
+  <Cubes>
+    <ProjectItem>
+      <Name>Adventure Works Reseller Sales.cube</Name>
+      <FullPath>Adventure Works Reseller Sales.cube</FullPath>
+      <Dependencies>
+        <ProjectItem>
+          <Name>Adventure Works Reseller Sales.partitions</Name>
+          <FullPath>Adventure Works Reseller Sales.partitions</FullPath>
+        </ProjectItem>
+      </Dependencies>
+    </ProjectItem>
+  </Cubes>
   <Dimensions>
     <ProjectItem>
       <Name>Date.dim</Name>
