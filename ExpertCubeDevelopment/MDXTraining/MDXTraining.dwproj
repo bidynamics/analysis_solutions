@@ -6,10 +6,37 @@
     <Name>MDXTraining.database</Name>
     <FullPath>MDXTraining.database</FullPath>
   </Database>
+  <DataSources>
+    <ProjectItem>
+      <Name>Adventure Works DW2017.ds</Name>
+      <FullPath>Adventure Works DW2017.ds</FullPath>
+    </ProjectItem>
+  </DataSources>
+  <DataSourceViews>
+    <ProjectItem>
+      <Name>Adventure Works DW2017.dsv</Name>
+      <FullPath>Adventure Works DW2017.dsv</FullPath>
+    </ProjectItem>
+  </DataSourceViews>
   <Configurations>
     <Configuration>
       <Name>Development</Name>
-      <Options />
+      <Options>
+        <ConnectionMappings>
+          <ConfigurationSetting>
+            <Id>Adventure Works DW2017</Id>
+            <Name>Adventure Works DW2017</Name>
+            <Value xsi:type="xsd:string">Provider=SQLNCLI11.1;Data Source=NAUTILUS\SQLSERVER2017;Integrated Security=SSPI;Initial Catalog=AdventureWorksDW2017</Value>
+          </ConfigurationSetting>
+        </ConnectionMappings>
+        <ConnectionSecurityMappings>
+          <ConfigurationSetting>
+            <Id>Adventure Works DW2017</Id>
+            <Name>Adventure Works DW2017</Name>
+            <Value xsi:type="xsd:int">0</Value>
+          </ConfigurationSetting>
+        </ConnectionSecurityMappings>
+      </Options>
     </Configuration>
   </Configurations>
 </Project>
