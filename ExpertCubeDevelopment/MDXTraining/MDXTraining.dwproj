@@ -40,6 +40,12 @@
       <FullPath>Adventure Works DW2017.dsv</FullPath>
     </ProjectItem>
   </DataSourceViews>
+  <Roles>
+    <ProjectItem>
+      <Name>Administrator.role</Name>
+      <FullPath>Administrator.role</FullPath>
+    </ProjectItem>
+  </Roles>
   <Configurations>
     <Configuration>
       <Name>Development</Name>
