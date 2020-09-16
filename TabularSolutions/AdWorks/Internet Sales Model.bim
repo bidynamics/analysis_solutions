@@ -695,6 +695,36 @@
         ]
       }
     ],
+    "relationships": [
+      {
+        "name": "6cc91aa2-e785-4524-babf-eba0a7ac24c2",
+        "fromTable": "Fact Sales",
+        "fromColumn": "OrderDateKey",
+        "toTable": "Calendar Lookup",
+        "toColumn": "DateKey"
+      },
+      {
+        "name": "a7d352a4-597a-4890-9b8f-a2187f2c18fe",
+        "fromTable": "Fact Sales",
+        "fromColumn": "CustomerKey",
+        "toTable": "Customer Lookup",
+        "toColumn": "CustomerKey"
+      },
+      {
+        "name": "5ab65371-58d6-40d9-94a2-016e7a59e1d6",
+        "fromTable": "Fact Sales",
+        "fromColumn": "ProductKey",
+        "toTable": "Product Lookup",
+        "toColumn": "ProductKey"
+      },
+      {
+        "name": "f231a95e-61b7-445f-92a4-e3e333d17095",
+        "fromTable": "Fact Sales",
+        "fromColumn": "SalesTerritoryKey",
+        "toTable": "Territory Lookup",
+        "toColumn": "SalesTerritoryKey"
+      }
+    ],
     "annotations": [
       {
         "name": "ClientCompatibilityLevel",
