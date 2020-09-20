@@ -16,7 +16,6 @@
           "authentication": null,
           "query": null
         },
-        "options": {},
         "credential": {
           "AuthenticationKind": "OAuth2",
           "kind": "SQL",
@@ -175,6 +174,125 @@
                 "    dbo_FactSales"
               ]
             }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Total Sales",
+            "expression": [
+              " ",
+              "CALCULATE(",
+              "    SUM( 'Fact Sales'[ExtendedAmount] )",
+              ")"
+            ],
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "displayFolder": "Base Measures",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Total Cost",
+            "expression": [
+              " ",
+              "CALCULATE( ",
+              "    SUM( 'Fact Sales'[TotalProductCost] )",
+              ")"
+            ],
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "displayFolder": "Base Measures",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Total Margin $",
+            "expression": [
+              " ",
+              "CALCULATE(",
+              "    [Total Sales] - [Total Cost]",
+              ")"
+            ],
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "displayFolder": "Base Measures",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Total Margin %",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    DIVIDE( [Total Sales], [Total Cost], 0 )",
+              ")"
+            ],
+            "formatString": "0.00%;-0.00%;0.00%",
+            "displayFolder": "Base Measures"
+          },
+          {
+            "name": "Total Sales Tax Paid",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    SUM( 'Fact Sales'[TaxAmt] )",
+              ")"
+            ],
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "displayFolder": "Base Measures",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Total Sales Including Tax",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Total Sales] + [Total Sales Tax Paid]",
+              ")"
+            ],
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "displayFolder": "Base Measures",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Total Order Quantity",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    SUM('Fact Sales'[OrderQuantity] )",
+              ")"
+            ],
+            "formatString": "0",
+            "displayFolder": "Base Measures"
+          },
+          {
+            "name": "Total Customers That Have Purchased",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    DISTINCTCOUNT( 'Fact Sales'[CustomerKey] )",
+              ")"
+            ],
+            "formatString": "0"
           }
         ]
       },
@@ -363,6 +481,19 @@
               ]
             }
           }
+        ],
+        "measures": [
+          {
+            "name": "Total Number of Products",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    COUNTROWS( 'Product Lookup' )",
+              ")"
+            ],
+            "formatString": "0",
+            "displayFolder": "Base Measures"
+          }
         ]
       },
       {
@@ -449,34 +580,14 @@
             "sourceColumn": "NumberChildrenAtHome"
           },
           {
-            "name": "EnglishEducation",
+            "name": "Education",
             "dataType": "string",
             "sourceColumn": "EnglishEducation"
           },
           {
-            "name": "SpanishEducation",
-            "dataType": "string",
-            "sourceColumn": "SpanishEducation"
-          },
-          {
-            "name": "FrenchEducation",
-            "dataType": "string",
-            "sourceColumn": "FrenchEducation"
-          },
-          {
-            "name": "EnglishOccupation",
+            "name": "Occupation",
             "dataType": "string",
             "sourceColumn": "EnglishOccupation"
-          },
-          {
-            "name": "SpanishOccupation",
-            "dataType": "string",
-            "sourceColumn": "SpanishOccupation"
-          },
-          {
-            "name": "FrenchOccupation",
-            "dataType": "string",
-            "sourceColumn": "FrenchOccupation"
           },
           {
             "name": "HouseOwnerFlag",
@@ -529,6 +640,30 @@
               ]
             }
           }
+        ],
+        "measures": [
+          {
+            "name": "Total Number of Customers",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    COUNTROWS( 'Customer Lookup' )",
+              ")"
+            ],
+            "formatString": "0",
+            "displayFolder": "Base Measures"
+          },
+          {
+            "name": "Count of Occupations",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    DISTINCTCOUNT('Customer Lookup'[Occupation] )",
+              ")"
+            ],
+            "formatString": "0",
+            "displayFolder": "Base Measures"
+          }
         ]
       },
       {
@@ -545,17 +680,17 @@
             "sourceColumn": "SalesTerritoryAlternateKey"
           },
           {
-            "name": "SalesTerritoryRegion",
+            "name": "Region",
             "dataType": "string",
             "sourceColumn": "SalesTerritoryRegion"
           },
           {
-            "name": "SalesTerritoryCountry",
+            "name": "Country",
             "dataType": "string",
             "sourceColumn": "SalesTerritoryCountry"
           },
           {
-            "name": "SalesTerritoryGroup",
+            "name": "Group",
             "dataType": "string",
             "sourceColumn": "SalesTerritoryGroup"
           }
@@ -575,6 +710,19 @@
                 "    #\"Removed Columns\""
               ]
             }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Count of Countries",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    DISTINCTCOUNT( 'Territory Lookup'[Country] )",
+              ")"
+            ],
+            "formatString": "0",
+            "displayFolder": "Base Measures"
           }
         ]
       },
