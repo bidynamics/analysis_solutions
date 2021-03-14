@@ -20,7 +20,7 @@
           "AuthenticationKind": "OAuth2",
           "kind": "SQL",
           "path": "axiom-sqldatabase.database.windows.net;AdventureWorks",
-          "Expires": "Wed, 16 Sep 2020 18:06:58 GMT",
+          "Expires": "Sun, 20 Sep 2020 19:31:49 GMT",
           "RefreshToken": "********"
         }
       }
@@ -292,7 +292,165 @@
               "    DISTINCTCOUNT( 'Fact Sales'[CustomerKey] )",
               ")"
             ],
-            "formatString": "0"
+            "formatString": "0",
+            "displayFolder": "Base Measures"
+          },
+          {
+            "name": "Maximum Tax Paid on a Product",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    MAX( 'Fact Sales'[TaxAmt] )",
+              ")"
+            ],
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "displayFolder": "Base Measures",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Minimum Price Paid on a Product",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    MIN( 'Fact Sales'[UnitPrice] )",
+              ")"
+            ],
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "displayFolder": "Base Measures",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Average Price Paid on a Product",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    AVERAGE( 'Fact Sales'[UnitPrice] )",
+              ")"
+            ],
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "displayFolder": "Base Measures",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Margin %",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    DIVIDE( [Total Margin $], [Total Sales], 0 )",
+              ")"
+            ],
+            "formatString": "0.0%;-0.0%;0.0%",
+            "displayFolder": "Base Measures"
+          },
+          {
+            "name": "Markup %",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    DIVIDE( [Total Margin $], [Total Cost] )",
+              ")"
+            ],
+            "formatString": "0.0%;-0.0%;0.0%",
+            "displayFolder": "Base Measures"
+          },
+          {
+            "name": "Tax %",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    DIVIDE( [Total Sales Tax Paid], [Total Sales], 0 )",
+              ")"
+            ],
+            "formatString": "0.0%;-0.0%;0.0%",
+            "displayFolder": "Base Measures"
+          },
+          {
+            "name": "Total Sales Including Freight",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    SUMX( 'Fact Sales', 'Fact Sales'[ExtendedAmount] + 'Fact Sales'[Freight] )",
+              ")"
+            ],
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "displayFolder": "Base Measures",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Total Sales of Clothing",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Total Sales],",
+              "    'Product Lookup'[EnglishProductCategoryName] = \"Clothing\"",
+              ")"
+            ],
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "displayFolder": "Base Measures",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Sales To Female Customers",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Total Sales],",
+              "    'Customer Lookup'[Gender] = \"F\"",
+              ")"
+            ],
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "displayFolder": "Base Measures",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Sales of Bikes to Married Men",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Total Sales],",
+              "    'Product Lookup'[EnglishProductCategoryName] = \"Bikes\",",
+              "    'Customer Lookup'[Gender] = \"M\",",
+              "    'Customer Lookup'[MaritalStatus] = \"M\"",
+              ")"
+            ],
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "displayFolder": "Base Measures",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
           }
         ]
       },
@@ -493,6 +651,23 @@
             ],
             "formatString": "0",
             "displayFolder": "Base Measures"
+          },
+          {
+            "name": "Dealer Margin",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    SUMX( 'Product Lookup', 'Product Lookup'[ListPrice] - 'Product Lookup'[DealerPrice] )",
+              ")"
+            ],
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "displayFolder": "Base Dealer",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
           }
         ]
       },
@@ -659,6 +834,42 @@
               "",
               "CALCULATE(",
               "    DISTINCTCOUNT('Customer Lookup'[Occupation] )",
+              ")"
+            ],
+            "formatString": "0",
+            "displayFolder": "Base Measures"
+          },
+          {
+            "name": "Total Male Customers",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Total Number of Customers],",
+              "    'Customer Lookup'[Gender] = \"M\"",
+              ")"
+            ],
+            "formatString": "0",
+            "displayFolder": "Base Measures"
+          },
+          {
+            "name": "Total Female Customers",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Total Number of Customers],",
+              "    'Customer Lookup'[Gender] = \"F\"",
+              ")"
+            ],
+            "formatString": "0",
+            "displayFolder": "Base Measures"
+          },
+          {
+            "name": "Customers Earning at Least $100,000 per Year",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Total Number of Customers],",
+              "    'Customer Lookup'[YearlyIncome]",
               ")"
             ],
             "formatString": "0",
